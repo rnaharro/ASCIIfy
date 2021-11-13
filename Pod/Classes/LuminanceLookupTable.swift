@@ -68,7 +68,7 @@ open class LuminanceLookupTable: LookupTable {
         return nearest?.value
     }
 
-    open static func luminance(_ block: BlockGrid.Block, invert: Bool = false) -> Float {
+    public static func luminance(_ block: BlockGrid.Block, invert: Bool = false) -> Float {
         // See Wikipedia's article on relative luminance:
         // https://en.wikipedia.org/wiki/Relative_luminance
         var result = 0.2126 * block.r + 0.7152 * block.g + 0.0722 * block.b
