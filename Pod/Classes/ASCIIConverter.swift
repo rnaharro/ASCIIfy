@@ -47,7 +47,7 @@ public typealias StringHandler = ((String) -> Void)
 /// Converts images to ASCII art as a string or an image
 open class ASCIIConverter {
     var lut: LookupTable = LuminanceLookupTable()
-    open static var defaultFont = Font(name: "Courier", size: 12.0)!
+    public static var defaultFont = Font(name: "Courier", size: 12.0)!
     open var font = ASCIIConverter.defaultFont
     open var backgroundColor = Color.clear
     open var columns: Int?
@@ -78,8 +78,8 @@ open class ASCIIConverter {
     }
 
     #if os(iOS)
-    private func configureAttributes(_ attributes: inout [NSAttributedStringKey: Any], color: Color) {
-    attributes[NSAttributedStringKey.foregroundColor] = color
+    private func configureAttributes(_ attributes: inout [NSAttributedString.Key: Any], color: Color) {
+    attributes[NSAttributedString.Key.foregroundColor] = color
     }
 
     #elseif os(OSX)
@@ -104,7 +104,7 @@ open class ASCIIConverter {
         ctx!.textMatrix = CGAffineTransform(scaleX: 1.0, y: -1.0);
         ctx?.concatenate(flipVertical)
         #if os(iOS)
-            var attributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: Color.black] as [NSAttributedStringKey : Any]
+            var attributes = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: Color.black] as [NSAttributedString.Key : Any]
         #elseif os(OSX)
             var attributes: [AnyHashable: Any] = [kCTFontAttributeName as AnyHashable: font, kCTForegroundColorAttributeName as AnyHashable: NSColor.black.cgColor]
         #endif
@@ -124,7 +124,7 @@ open class ASCIIConverter {
                 let (string, color) = data[row][col]
                 let rect = CGRect(x: blockWidth * CGFloat(col), y: blockHeight * CGFloat(row), width: blockWidth, height: blockHeight)
                 configureAttributes(&attributes, color: color)
-                let intermediate = CFAttributedStringCreate(nil, string as NSString, attributes as CFDictionary!)
+                let intermediate = CFAttributedStringCreate(nil, string as NSString, attributes as CFDictionary)
                 let line = CTLineCreateWithAttributedString(intermediate!)
                 ctx?.textPosition = rect.origin
                 CTLineDraw(line, ctx!)

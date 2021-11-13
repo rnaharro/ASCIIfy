@@ -65,8 +65,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         fontSizeLabel.text = "\(Int(fontSizeSlider.value))"
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        inputImage = info[UIImagePickerControllerEditedImage] as? UIImage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        inputImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         imagePicker?.dismiss(animated: true, completion: nil)
         processInput()
     }
@@ -118,7 +118,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "options" {
             let navController = (segue.destination as? UINavigationController)
-            let optionsController = navController?.childViewControllers[0] as? OptionsController
+            let optionsController = navController?.children[0] as? OptionsController
             optionsController?.modeChangeHandler = { self.colorMode = $0}
             optionsController?.mode = colorMode
         }

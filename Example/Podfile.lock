@@ -6,14 +6,18 @@ PODS:
 DEPENDENCIES:
   - ASCIIfy (from `../`)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - KDTree
+
 EXTERNAL SOURCES:
   ASCIIfy:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  ASCIIfy: 8dd7f35091a25dc2f224a552ee71a3fcbd738135
+  ASCIIfy: 9238a67f5e5e6a5f66266bb94744a1a1bc70e860
   KDTree: 264be272ac971da97d65be323c35dfffc39e7a4b
 
-PODFILE CHECKSUM: 5c2a79ac76f7b7f11f597c8419e99bb69e641b05
+PODFILE CHECKSUM: 841d7cb846041cde227207d861b00eb2fe608466
 
-COCOAPODS: 1.4.0.rc.1
+COCOAPODS: 1.11.2
